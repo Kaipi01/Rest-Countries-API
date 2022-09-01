@@ -1,0 +1,27 @@
+@use "variables" as var;
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --Elements-Color: var.$White;
+  --Background-Color: var.$Very-Light-Gray;
+  --Text-Color: var.$Very-Dark-Blue-Text;
+  --Input-Color: var.$Dark-Gray;
+  background-color: var(--Background-Color);
+  color: var(--Text-Color);
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body.dark {
+  --Elements-Color: var.$Dark-Blue;
+  --Background-Color: var.$Very-Dark-Blue-Bg;
+  --Text-Color: var.$White;
+  background-color: var(--Background-Color);
+  color: var(--Text-Color);
+}
