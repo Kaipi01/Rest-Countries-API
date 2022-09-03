@@ -1,5 +1,10 @@
-@use "variables" as var;
+@use 'flex-mixin' as flex;
+@use 'components/field';
+@use 'components/details';
+@use 'components/country';
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+// margins and paddings reset
 
 * {
   margin: 0;
@@ -7,21 +12,137 @@
   box-sizing: border-box;
 }
 
+// body styling
+
 body {
-  --Elements-Color: var.$White;
-  --Background-Color: var.$Very-Light-Gray;
-  --Text-Color: var.$Very-Dark-Blue-Text;
-  --Input-Color: var.$Dark-Gray;
+  // light theme
+  --Elements-Color: hsl(0, 0%, 100%);
+  --Background-Color: hsl(0, 0%, 98%);
+  --Text-Color: hsl(200, 15%, 8%);
+  --Input-Color: hsl(0, 0%, 52%);
+  --Box-Shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+  --Transition: all 0.3s ease;
   background-color: var(--Background-Color);
   color: var(--Text-Color);
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Nunito Sans", sans-serif;
+  transition: var(--Transition);
 }
 
 body.dark {
-  --Elements-Color: var.$Dark-Blue;
-  --Background-Color: var.$Very-Dark-Blue-Bg;
-  --Text-Color: var.$White;
+  // dark theme
+  --Elements-Color: hsl(209, 23%, 22%);
+  --Background-Color: hsl(207, 26%, 17%);
+  --Text-Color: hsl(0, 0%, 100%);
   background-color: var(--Background-Color);
   color: var(--Text-Color);
+}
+
+// header styling
+
+.header {
+  @include flex.setFlex(row,space-between);
+  background-color: var(--Elements-Color);
+  box-shadow: var(--Box-Shadow);
+  padding: 20px;
+  transition: var(--Transition);
+  @media only screen and (min-width: 600px) {
+    padding: 20px 60px;
+  }
+  
+  &__title {
+    font-size: 16px;
+    @media only screen and (min-width: 600px) {
+      font-size: 24px;
+    }
+  }
+
+  &__changeThemeBtn {
+    @include flex.setFlex();
+    gap: 5px;
+    cursor: pointer;
+    color: var(--Text-Color);
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    @media only screen and (min-width: 600px) {
+      font-size: 16px;
+    }
+    font-weight: 600;
+    transition: var(--Transition);
+    height: 30px;
+
+    &:hover, &:focus, &:active {
+      color: var(--Input-Color);
+    }
+
+    &Icon {
+      --ionicon-stroke-width: 48px;
+    }
+  }
+}
+
+// main styling
+
+.main {
+  padding-bottom: 60px;
+
+  &__home {
+    &--hide {
+      display: none;
+    }
+
+    &Inputs {
+      @include flex.setFlex(row,space-between);
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 30px 20px;
+      @media only screen and (min-width: 600px) {
+        padding: 40px 60px;
+      }
+      
+    }
+
+    &Content {
+      @include flex.setFlex();
+      flex-wrap: wrap;
+      gap: 80px;
+      padding: 0px 60px;
+    }
+  }
+
+  &__details {
+    padding: 0 25px;
+    @media only screen and (min-width: 600px) {
+      padding: 0 60px;
+    }
+    &--hide {
+      display: none;
+    }
+
+    &BackBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      box-shadow: var(--Box-Shadow);
+      border: none;
+      border-radius: 5px;
+      background-color: transparent;
+      cursor: pointer;
+      transition: var(--Transition);
+      padding: 8px 30px;
+      margin: 35px 0 55px 0;
+      @media only screen and (min-width: 600px) {
+        margin: 60px 0 50px 0;
+      }
+
+      &:hover, &:focus, &:active {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      &Icon {
+        font-size: 20px;
+      }
+    }
+  }
 }
