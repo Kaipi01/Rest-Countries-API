@@ -1,0 +1,131 @@
+@use "flex-mixin" as flex;
+
+.field {
+  @include flex.setFlex();
+  background-color: var(--Elements-Color);
+  box-shadow: var(--Box-Shadow);
+  border: none;
+  border-radius: 5px;
+  height: 58px;
+  transition: var(--Transition);
+
+  &:nth-child(1) {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  &__search {
+    &Input {
+      color: var(--Text-Color);
+      background-color: var(--Elements-Color);
+      border: none;
+      max-height: 58px;
+      font-size: 16px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      width: 100%;
+      max-width: 450px;
+      outline: none;
+      padding: 20px;
+      transition: var(--Transition);
+
+      &::placeholder {
+        color: var(--Input-Color);
+        font-size: 14px;
+      }
+
+      &:focus {
+        -webkit-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
+        -moz-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
+        box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
+      }
+    }
+
+    &Icon {
+      color: var(--Input-Color);
+      font-size: 20px;
+      padding-left: 30px;
+    }
+  }
+
+  &__filter {
+    position: relative;
+    min-width: 188px;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      top: calc(50% - 5px);
+      right: 20px;
+      width: 5px;
+      height: 5px;
+      transform: rotate(45deg);
+      border: 2px solid var(--Text-Color);
+      border-top: none;
+      border-left: none;
+    }
+
+    &Select {
+      color: var(--Text-Color);
+      background-color: var(--Elements-Color);
+      border: none;
+      cursor: pointer;
+      height: 58px;
+      font-size: 14px;
+      border-radius: 5px;
+      padding: 20px;
+      padding-right: 70px;
+      transition: var(--Transition);
+      text-align: left;
+      width: 100%;
+
+      &:focus {
+        -webkit-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
+        -moz-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
+        box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
+      }
+    }
+
+    &Ul {
+      position: absolute;
+      width: 100%;
+      background-color: var(--Elements-Color);
+      border-radius: 5px;
+      margin-top: 5px;
+      padding: 10px 0;
+      box-shadow: var(--Box-Shadow);
+      list-style: none;
+      transition: var(--Transition);
+
+      &--hide {
+        display: none;
+      }
+    }
+
+    &Btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: var(--Text-Color);
+      cursor: pointer;
+      background-color: transparent;
+      transition: var(--Transition);
+      border: none;
+
+      &:hover, &:focus, &:active {
+        backdrop-filter: brightness(0.8);
+      }
+    }
+  }
+
+  &__label {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+  }
+}
