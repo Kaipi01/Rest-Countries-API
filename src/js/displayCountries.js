@@ -13,8 +13,12 @@ export default async function displayCountries() {
     languages = [],
     currencies = [],
     tld = [],
-    borders = [],
-    fifa = [];
+    borders = [];
+
+  const arrayOfCCA3 = [];
+  for (let i = 0; i < countriesData.length; i++) {
+    arrayOfCCA3[i] = countriesData[i].cca3;
+  }
 
   for (let i = 0; i < countriesData.length; i++) {
     for (const key in countriesData[i].name.nativeName) {
@@ -31,14 +35,21 @@ export default async function displayCountries() {
       langList += `${countriesData[i].languages[key]}, `;
     languages[i] = langList.slice(0, langList.length - 2);
     name[i] = countriesData[i].name.common;
-    population[i] = countriesData[i].population;
+    population[i] = countriesData[i].population.toString();
+    const populationNumber = [];
+    for (let j = 0; j < population[i].length; j++) {
+      if (j % 3 === 0 && j != 0) {
+        populationNumber.push(`,`);
+      }
+      populationNumber.push(population[i][population[i].length - j - 1]);
+    }
+    population[i] = populationNumber.reverse().join("");
     flag[i] = countriesData[i].flags.svg;
     region[i] = countriesData[i].region;
     subregion[i] = countriesData[i].subregion;
     capital[i] = countriesData[i].capital;
     tld[i] = countriesData[i].tld;
     borders[i] = countriesData[i].borders;
-    fifa[i] = countriesData[i].fifa;
 
     generateCountryCards(i);
   }
@@ -76,8 +87,6 @@ export default async function displayCountries() {
       homeInputs.classList.remove("main__homeInputs--hide");
     });
 
-    displayCountryInfoInConsole(i);
-
     const detailsCountryFlag = document.querySelector(".details__img");
     detailsCountryFlag.src = flag[i];
     detailsCountryFlag.alt = `Flag of ${name[i]}`;
@@ -114,6 +123,16 @@ export default async function displayCountries() {
     } else {
       detailMessage.classList.remove("details__message--hide");
     }
+
+    const borderCountryBtns = document.querySelectorAll(
+      ".details__borderCountryBtn"
+    );
+    borderCountryBtns.forEach((btn) =>
+      btn.addEventListener("click", (e) => {
+        const cca3 = e.target.textContent;
+        showCountryDetails(arrayOfCCA3.indexOf(cca3));
+      })
+    );
   }
 
   function generateCountryCards(i) {
@@ -146,21 +165,5 @@ export default async function displayCountries() {
     }
     countryCard.append(infoContainer);
     homeContent.append(countryCard);
-  }
-
-  function displayCountryInfoInConsole(i) {
-    console.log("-------------------------------------");
-    console.log(`Flag image file: ${flag[i]}`);
-    console.log(`Country name: ${name[i]}`);
-    console.log(`Country shortcut name: ${fifa[i]}`);
-    console.log(`Native country name: ${nativeName[i]}`);
-    console.log(`Population: ${population[i]}`);
-    console.log(`Region: ${region[i]}`);
-    console.log(`Subregion: ${subregion[i]}`);
-    console.log(`Capital: ${capital[i]}`);
-    console.log(`Currencies: ${currencies[i]}`);
-    console.log(`Languages: ${languages[i]}`);
-    console.log(`Top level domain: ${tld[i]}`);
-    console.log(`Borders countries: ${borders[i] || "there aren't"}`);
   }
 }
