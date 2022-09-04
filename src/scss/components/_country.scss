@@ -6,6 +6,10 @@
     transition: var(--Transition);
     cursor: pointer;
 
+    &--hide {
+      display: none;
+    }
+
     &:hover, &:focus, &:active {
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
