@@ -1,4 +1,4 @@
-import showHideSelectList from "./showHideSelectList";
+import filterCountries from "./filterCountries";
 import displayCountries from "./displayCountries";
 
 displayCountries();
@@ -9,8 +9,15 @@ else document.body.classList.add("light");
 
 const themeBtn = document.querySelector(".header__changeThemeBtn");
 const filterSelect = document.querySelector(".field__filterSelect");
+const searchInput = document.querySelector(".field__searchInput");
 
-filterSelect.addEventListener("click", showHideSelectList);
+searchInput.addEventListener("input", (e) => {
+  filterCountries(e);
+});
+
+filterSelect.addEventListener("click", (e) => {
+  filterCountries(e);
+});
 
 themeBtn.addEventListener("click", () => {
   if (theme === "dark") {
