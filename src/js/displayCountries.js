@@ -35,9 +35,6 @@ export default async function displayCountries() {
       langList += `${countriesData[i].languages[key]}, `;
     languages[i] = langList.slice(0, langList.length - 2) || "Does not have";
     name[i] = countriesData[i].name.common;
-    if (name[i] === "Heard Island and McDonald Islands") {
-      console.log(countriesData[i]);
-    }
     population[i] = countriesData[i].population.toString();
     const populationNumber = [];
     for (let j = 0; j < population[i].length; j++) {
