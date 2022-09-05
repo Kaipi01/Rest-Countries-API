@@ -29,12 +29,15 @@ export default async function displayCountries() {
     for (const key in countriesData[i].currencies) {
       currList += `${countriesData[i].currencies[key].name}, `;
     }
-    currencies[i] = currList.slice(0, currList.length - 2);
+    currencies[i] = currList.slice(0, currList.length - 2) || "Does not have";
     const langList = "";
     for (const key in countriesData[i].languages)
       langList += `${countriesData[i].languages[key]}, `;
-    languages[i] = langList.slice(0, langList.length - 2);
+    languages[i] = langList.slice(0, langList.length - 2) || "Does not have";
     name[i] = countriesData[i].name.common;
+    if (name[i] === "Heard Island and McDonald Islands") {
+      console.log(countriesData[i]);
+    }
     population[i] = countriesData[i].population.toString();
     const populationNumber = [];
     for (let j = 0; j < population[i].length; j++) {
@@ -46,9 +49,9 @@ export default async function displayCountries() {
     population[i] = populationNumber.reverse().join("");
     flag[i] = countriesData[i].flags.svg;
     region[i] = countriesData[i].region;
-    subregion[i] = countriesData[i].subregion;
-    capital[i] = countriesData[i].capital;
-    tld[i] = countriesData[i].tld;
+    subregion[i] = countriesData[i].subregion || "Does not have";
+    capital[i] = countriesData[i].capital || "Does not have";
+    tld[i] = countriesData[i].tld || "Does not have";
     borders[i] = countriesData[i].borders;
 
     generateCountryCards(i);
@@ -117,7 +120,15 @@ export default async function displayCountries() {
       for (let j = 0; j < borders[i].length; j++) {
         const btn = document.createElement("button");
         btn.classList.add("details__borderCountryBtn");
-        btn.textContent = borders[i][j];
+        let countryNameByCCA3;
+        for (let k in countriesData) {
+          if (countriesData[k].cca3 === borders[i][j]) {
+            countryNameByCCA3 = countriesData[k].name.common;
+            break;
+          }
+        }
+        btn.textContent = countryNameByCCA3;
+        btn.setAttribute("data-cca3", borders[i][j]);
         btnsContainer.append(btn);
       }
     } else {
@@ -129,7 +140,7 @@ export default async function displayCountries() {
     );
     borderCountryBtns.forEach((btn) =>
       btn.addEventListener("click", (e) => {
-        const cca3 = e.target.textContent;
+        const cca3 = e.target.dataset.cca3;
         showCountryDetails(arrayOfCCA3.indexOf(cca3));
       })
     );
