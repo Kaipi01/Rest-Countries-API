@@ -72,9 +72,7 @@ body.dark {
     transition: var(--Transition);
     height: 30px;
 
-    &:hover,
-    &:focus,
-    &:active {
+    &:hover, &:active  {
       color: var(--Input-Color);
     }
 
