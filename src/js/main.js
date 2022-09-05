@@ -1,18 +1,17 @@
 import filterCountries from "./filterCountries";
 import displayCountries from "./displayCountries";
 
+const themeBtn = document.querySelector(".header__changeThemeBtn");
+const filterSelect = document.querySelector(".field__filterSelect");
+const searchInput = document.querySelector(".field__searchInput");
+let btnContent = "";
+let inputValue = "";
+
 displayCountries();
 
 let theme = localStorage.getItem("theme");
 if (theme === "dark") document.body.classList.add("dark");
 else document.body.classList.add("light");
-
-const themeBtn = document.querySelector(".header__changeThemeBtn");
-const filterSelect = document.querySelector(".field__filterSelect");
-const searchInput = document.querySelector(".field__searchInput");
-
-let btnContent = "";
-let inputValue = "";
 
 searchInput.addEventListener("input", (e) => {
   inputValue = e.target.value;
@@ -22,6 +21,7 @@ searchInput.addEventListener("input", (e) => {
 filterSelect.addEventListener("click", () => {
   const selectList = document.querySelector(".field__filterUl");
   const selectOption = document.querySelectorAll(".field__filterBtn");
+
   selectList.classList.toggle("field__filterUl--hide");
   selectOption.forEach((btn) =>
     btn.addEventListener("click", () => {
@@ -42,6 +42,7 @@ filterSelect.addEventListener("click", () => {
 
 themeBtn.addEventListener("click", () => {
   const themeBtnIcon = document.querySelector(".header__changeThemeBtnIcon");
+
   if (theme === "dark") {
     document.body.classList.remove("dark");
     document.body.classList.add("light");
