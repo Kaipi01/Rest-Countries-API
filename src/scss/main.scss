@@ -4,18 +4,13 @@
 @use "components/country";
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
-// margins and paddings reset
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-// body styling
-
 body {
-  // light theme
   --Elements-Color: hsl(0, 0%, 100%);
   --Background-Color: hsl(0, 0%, 98%);
   --Text-Color: hsl(200, 15%, 8%);
@@ -30,15 +25,12 @@ body {
 }
 
 body.dark {
-  // dark theme
   --Elements-Color: hsl(209, 23%, 22%);
   --Background-Color: hsl(207, 26%, 17%);
   --Text-Color: hsl(0, 0%, 100%);
   background-color: var(--Background-Color);
   color: var(--Text-Color);
 }
-
-// header styling
 
 .header {
   @include flex.setFlex(row, space-between);
@@ -72,7 +64,8 @@ body.dark {
     transition: var(--Transition);
     height: 30px;
 
-    &:hover, &:active  {
+    &:hover,
+    &:active {
       color: var(--Input-Color);
     }
 
@@ -81,8 +74,6 @@ body.dark {
     }
   }
 }
-
-// main styling
 
 .main {
   padding-bottom: 60px;
@@ -123,10 +114,20 @@ body.dark {
         margin-left: auto;
         margin-right: auto;
         font-size: 100px;
+        -webkit-animation: spining 1.7s linear infinite;
         animation: spining 1.7s linear infinite;
 
         &--hide {
           display: none;
+        }
+
+        @-webkit-keyframes spining {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
 
         @keyframes spining {

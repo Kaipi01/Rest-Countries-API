@@ -1,39 +1,41 @@
 .country {
+  width: 270px;
+  border-radius: 5px;
+  background-color: var(--Elements-Color);
+  box-shadow: var(--Box-Shadow);
+  transition: var(--Transition);
+  cursor: pointer;
+
+  &--hide {
+    display: none;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  &__flag {
     width: 270px;
-    border-radius: 5px;
-    background-color: var(--Elements-Color);
-    box-shadow: var(--Box-Shadow);
-    transition: var(--Transition);
-    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 
-    &--hide {
-      display: none;
-    }
+  &__name {
+    margin-bottom: 20px;
+  }
 
-    &:hover, &:focus, &:active {
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    }
+  &__infoContainer {
+    padding: 20px 25px 50px 25px;
+  }
 
-    &__flag {
-      width: 270px;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-    }
+  &__info {
+    line-height: 1.7;
+    font-weight: 600;
 
-    &__name {
-      margin-bottom: 20px;
-    }
-
-    &__infoContainer {
-      padding: 20px 25px 50px 25px;
-    }
-
-    &__info {
-      line-height: 1.7;
-      font-weight: 600;
-
-      &Data {
-        font-weight: 300;
-      }
+    &Data {
+      font-weight: 300;
     }
   }
+}

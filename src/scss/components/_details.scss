@@ -1,91 +1,93 @@
-@use 'flex-mixin' as flex;
+@use "flex-mixin" as flex;
 
 .details {
-    @include flex.setFlex(column, flex-start);
+  @include flex.setFlex(column, flex-start);
+  @media only screen and (min-width: 1000px) {
+    flex-direction: row;
+  }
+  font-size: 16px;
+  gap: 50px;
+  @media only screen and (min-width: 1350px) {
+    gap: 100px;
+  }
+
+  &__img {
+    width: 100%;
+    max-width: 580px;
     @media only screen and (min-width: 1000px) {
-        flex-direction: row;
+      min-width: 450px;
     }
-    font-size: 16px;
-    gap: 50px;
-    @media only screen and (min-width: 1350px) {
-        gap: 100px;
+    box-shadow: var(--Box-Shadow);
+  }
+
+  &__name {
+    font-size: 25px;
+    @media only screen and (min-width: 1000px) {
+      font-size: 35px;
     }
+  }
 
-    &__img {
-        width: 100%;
-        max-width: 580px;
-        @media only screen and (min-width: 1000px) {
-            min-width: 450px;
-        }
-        box-shadow: var(--Box-Shadow);
+  &__info {
+    @include flex.setFlex(row, space-between, flex-start);
+    flex-wrap: wrap;
+    gap: 40px;
+    @media only screen and (min-width: 750px) {
+      justify-content: flex-start;
+      gap: 150px;
     }
-
-    &__name {
-        font-size: 25px;
-        @media only screen and (min-width: 1000px) {
-            font-size: 35px;
-        }
+    @media only screen and (min-width: 1000px) {
+      gap: 40px;
     }
-
-    &__info {
-        @include flex.setFlex(row, space-between, flex-start);
-        flex-wrap: wrap;
-        gap: 40px;
-        @media only screen and (min-width: 750px) {
-            justify-content: flex-start;
-            gap: 150px;
-        }
-        @media only screen and (min-width: 1000px) {
-            gap: 40px;
-        }
-        @media only screen and (min-width: 1400px) {
-            gap: 110px;
-        }
+    @media only screen and (min-width: 1400px) {
+      gap: 110px;
     }
+  }
 
-    &__borderCountries {
-        @include flex.setFlex(column, flex-start, flex-start);
-        @media only screen and (min-width: 1000px) {
-            flex-direction: row;
-            align-items: center;
-        }
-        gap: 10px;
-        margin-top: 55px;
-
-        &Title {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            @media only screen and (min-width: 1000px) {
-                margin-bottom: 0;
-            }
-        }
-
-        &Btns {
-            @include flex.setFlex(row,flex-start);
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+  &__borderCountries {
+    @include flex.setFlex(column, flex-start, flex-start);
+    @media only screen and (min-width: 1000px) {
+      flex-direction: row;
+      align-items: center;
     }
+    gap: 10px;
+    margin-top: 55px;
 
-    &__borderCountryBtn {
-      border: 3px solid var(--Elements-Color);
-      box-shadow: var(--Box-Shadow);
-      border-radius: 5px;
-      background-color: transparent;
-      cursor: pointer;
-      transition: var(--Transition);
-      color: var(--Text-Color);
-      padding: 5px 20px;
-
-      &:hover, &:focus, &:active {
-        border: 3px solid rgb(181, 181, 181);
+    &Title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      @media only screen and (min-width: 1000px) {
+        margin-bottom: 0;
       }
-    } 
-
-    &__message{
-        &--hide {
-            display: none;
-        }
     }
+
+    &Btns {
+      @include flex.setFlex(row, flex-start);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  &__borderCountryBtn {
+    border: 3px solid var(--Elements-Color);
+    box-shadow: var(--Box-Shadow);
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: var(--Transition);
+    color: var(--Text-Color);
+    padding: 5px 20px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border: 3px solid rgb(181, 181, 181);
+    }
+  }
+
+  &__message {
+    &--hide {
+      display: none;
+    }
+  }
 }

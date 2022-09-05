@@ -29,14 +29,32 @@
       padding: 20px;
       transition: var(--Transition);
 
+      &::-webkit-input-placeholder {
+        color: var(--Input-Color);
+        font-size: 14px;
+      }
+
+      &::-moz-placeholder {
+        color: var(--Input-Color);
+        font-size: 14px;
+      }
+
+      &:-ms-input-placeholder {
+        color: var(--Input-Color);
+        font-size: 14px;
+      }
+
+      &::-ms-input-placeholder {
+        color: var(--Input-Color);
+        font-size: 14px;
+      }
+
       &::placeholder {
         color: var(--Input-Color);
         font-size: 14px;
       }
 
       &:focus {
-        -webkit-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
-        -moz-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
         box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
       }
     }
@@ -51,9 +69,9 @@
   &__filter {
     position: relative;
     min-width: 188px;
-    
+
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: calc(50% - 5px);
       right: 20px;
@@ -80,8 +98,6 @@
       width: 100%;
 
       &:focus {
-        -webkit-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
-        -moz-box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
         box-shadow: inset 0px -6px 0px -3px var(--Text-Color);
       }
     }
@@ -113,7 +129,10 @@
       transition: var(--Transition);
       border: none;
 
-      &:hover, &:focus, &:active {
+      &:hover,
+      &:focus,
+      &:active {
+        -webkit-backdrop-filter: brightness(0.8);
         backdrop-filter: brightness(0.8);
       }
     }
@@ -121,6 +140,7 @@
 
   &__label {
     clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
     clip-path: inset(50%);
     height: 1px;
     width: 1px;
