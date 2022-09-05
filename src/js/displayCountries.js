@@ -25,12 +25,12 @@ export default async function displayCountries() {
       nativeName[i] = countriesData[i].name.nativeName[key].common;
       break;
     }
-    const currList = "";
+    let currList = "";
     for (const key in countriesData[i].currencies) {
       currList += `${countriesData[i].currencies[key].name}, `;
     }
     currencies[i] = currList.slice(0, currList.length - 2) || "Does not have";
-    const langList = "";
+    let langList = "";
     for (const key in countriesData[i].languages)
       langList += `${countriesData[i].languages[key]}, `;
     languages[i] = langList.slice(0, langList.length - 2) || "Does not have";

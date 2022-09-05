@@ -12,28 +12,29 @@ export default function filterCountries(btnContent, inputValue) {
 
     btnContent === "America" ? (btnContent = "Americas") : btnContent;
 
-    let flag = true;
-    for (let i = 0; i <= countryCardName.length; i++) {
-      if (
-        inputValue.toLocaleLowerCase() ===
-        countryCardName.toLocaleLowerCase().slice(0, i)
-      ) {
-        flag = false;
-      }
-    }
-
     if (btnContent === "" && inputValue !== "") {
-      if (flag) {
-        card.classList.add("country--hide");
-      }
+      isThereACountry(inputValue, countryCardName)
+        ? card.classList.add("country--hide")
+        : card.classList.remove("country--hide");
     } else if (btnContent !== "" && inputValue === "") {
       countryCardRegionInfo !== btnContent
         ? card.classList.add("country--hide")
         : card.classList.remove("country--hide");
     } else {
-      !flag && countryCardRegionInfo === btnContent
+      !isThereACountry(inputValue, countryCardName) &&
+      countryCardRegionInfo === btnContent
         ? card.classList.remove("country--hide")
         : card.classList.add("country--hide");
     }
   });
+
+  function isThereACountry(value, name) {
+    let flag = true;
+    for (let i = 0; i <= name.length; i++) {
+      if (value.toLocaleLowerCase() === name.toLocaleLowerCase().slice(0, i)) {
+        flag = false;
+      }
+    }
+    return flag;
+  }
 }
